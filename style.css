@@ -1,0 +1,71 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+:root {
+    --cor0: #F3F5FC;
+    --cor1: #0A3871;
+    --cor3: white;
+}
+
+body {
+    background-color: var(--cor0);
+}
+
+header {
+    margin: 40px 84px;
+}
+
+main {
+    max-width: 1080px;
+    height: calc(100vh - 80px - 51px - 40px);
+    margin: auto;
+}
+
+/*CSS específico da página main*/
+
+.main-index {
+    display: flex;
+}
+
+.menuInicial {
+    width: 317px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+    row-gap: 20px;
+}
+
+.iniciarJogo, .adicionarPalavra {
+    width: 100%;
+    height: 80px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.103);
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+.iniciarJogo {
+    background-color: var(--cor1);
+    color: var(--cor3);
+    border: none;
+}
+
+.iniciarJogo:hover, .adicionarPalavra:hover {
+    scale: 1.05;
+}
+
+.adicionarPalavra {
+    border: 1.5px solid var(--cor1);
+    color: var(--cor1)
+}
+
+/*fim do CSS específico da página main*/
+
+
+
+
+
+
