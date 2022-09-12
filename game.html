@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Forca - Adicionar Palavra</title>
+    <title>Jogo da Forca</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,7 +20,15 @@
     <header>
         <img src="media/logo_alura_22x48px.png" alt="Logotipo Alura">
     </header>
-    <main class="main-addpalavras">
+    
+    <main class="main-index" id="main-index">
+        <nav class="menuInicial">
+            <div><button id="iniciarJogo" class="iniciarJogo">Iniciar Jogo</button></div>
+            <div><button id="adicionarPalavra" class="adicionarPalavra">Adicionar Palavra</button></div>
+        </nav>
+    </main>
+    
+    <main class="main-addpalavras" id="main-addpalavras">
         <article class="box-input-ap">
             <textarea name="input-palavras" id="inputPalavras" class="input-palavras" placeholder="Insira aqui"></textarea>
         </article>
@@ -30,9 +38,21 @@
         <div class="but-addpalavras">
             <div><button id="but-salvar" class="but-salvar">Salvar e Começar</button></div>
             <div><button id="but-adicionarout" class="but-adicionarout">Adicionar Outra Palavra</button></div>
-            <div><a href="index.html" target="_self"  rel="prev"><button id="but-cancelar" class="but-cancelar">Cancelar</button></a></div>
+            <div><button id="but-cancelar" class="but-cancelar">Cancelar</button></div>
         </div>
     </main>
-    <footer></footer>
+
+    <main class="main-game" id="main-game">
+        <div id="canvaForca"></div>
+        <div></div>
+        <div>
+            <button>Novo Jogo</button>
+            <a href="index.html" target="_self"  rel="prev"><button>Desistir</button></a>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
 </body>
 </html>
