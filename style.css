@@ -184,6 +184,43 @@ main {
 
 /* fim CSS específico addpalavra */
 
+/* CSS específico game */
+
+.main-game {
+    display: flex;
+    flex-direction: column;
+}
+
+.canvaForca {
+    height: 100px;
+    flex: 1;
+}
+
+.campo-palavra {
+    flex: 0.3;
+}
+
+.but-games {
+    flex: 0.2;
+    display: flex;
+}
 
 
+
+.campo-palavra {
+    background-color: white;
+    width: calc(100% - 80px);
+    height: 100%;
+    margin: auto;
+    border: 1px solid var(--cor1);
+    border-radius: 30px;
+}
+
+.game-grid-but {
+    width: 50%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
 
