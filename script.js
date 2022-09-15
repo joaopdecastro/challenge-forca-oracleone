@@ -1,4 +1,4 @@
-//funções de navegação
+//funções de navegação------------------------------
 
 function telaInicial(){
     document.getElementById('main-index').style.display = ''
@@ -39,38 +39,7 @@ function adicionaeSalva () {
     iniciaJogo()
 }
 
-//lógica do jogo ------------------------------------
-
-function sorteiaPalavra() {
-    let sorteia = bancoPalavras[Math.floor(Math.random() * bancoPalavras.length)]
-    palavraEscolhida = sorteia
-
-}  //função adicionada à função de início do jogo
-
-document.body.addEventListener('keypress', function comparaLetras(evento) {
-    
-    //capturando a letra digitada
-    var letraDigitada = evento.key.toUpperCase()
-    console.log(letraDigitada)
-    
-    let i = 0
-
-    while(i < palavraEscolhida.length){
-        if (letraDigitada == palavraEscolhida[i]) {
-
-            adivinhado = adivinhado + letraDigitada
-            canvaForca.innerText = adivinhado
-            i++
-
-        } else if (letraDigitada != palavraEscolhida[i]) {
-
-
-            i++
-
-        }
-    }
-
-})
+//botões do jogo-------------------------------
 
 //botões index
 
@@ -91,10 +60,42 @@ botaoadicionasalva.onclick = adicionaeSalva
 let botaoCancelar = document.getElementById('but-cancelar')
 botaoCancelar.onclick = telaInicial
 
+//lógica do jogo ------------------------------------
+
+function sorteiaPalavra() {
+    let sorteia = bancoPalavras[Math.floor(Math.random() * bancoPalavras.length)]
+    palavraEscolhida = sorteia
+
+    for(let i=0; i < sorteia.length; i++) {
+        adivinhado = adivinhado + '-'
+        letrasCorretas.innerText = adivinhado
+    }
+    
+}  //função adicionada à função de início do jogo
+
+
+document.body.addEventListener('keypress', function comparaLetras(evento) {
+    
+    //capturando a letra digitada
+    var letraDigitada = evento.key.toUpperCase()
+    console.log(letraDigitada)
+    
+    let i = 0
+
+    while(i < palavraEscolhida.length){
+        if (letraDigitada == palavraEscolhida[i]) {
+            
+        } else if (letraDigitada != palavraEscolhida[i]) {
+            
+        }
+    }
+
+})
 
 telaInicial()
 
-const bancoPalavras = []
+const bancoPalavras = ['ALURA','HTML','JAVA','ORACLE','WINDOWS','LINUX','GATO','CACHORRO','BOLA','CARRO']
 
 let palavraEscolhida = ''
 let adivinhado = ''
+let letrasErradas = ''
