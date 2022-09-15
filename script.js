@@ -11,6 +11,7 @@ function iniciaJogo () {
     document.getElementById('main-addpalavras').style.display = 'none'
     document.getElementById('main-game').style.display = ''
     sorteiaPalavra()
+    desenhaForca()
 }
 
 function telaPalavra () {
@@ -65,37 +66,88 @@ botaoCancelar.onclick = telaInicial
 function sorteiaPalavra() {
     let sorteia = bancoPalavras[Math.floor(Math.random() * bancoPalavras.length)]
     palavraEscolhida = sorteia
-
-    for(let i=0; i < sorteia.length; i++) {
-        adivinhado = adivinhado + '-'
-        letrasCorretas.innerText = adivinhado
-    }
     
 }  //função adicionada à função de início do jogo
 
-
-document.body.addEventListener('keypress', function comparaLetras(evento) {
+document.addEventListener('keypress', (evento) => {
     
-    //capturando a letra digitada
-    var letraDigitada = evento.key.toUpperCase()
+    let letraDigitada = evento.key.toUpperCase()
     console.log(letraDigitada)
-    
-    let i = 0
 
-    while(i < palavraEscolhida.length){
-        if (letraDigitada == palavraEscolhida[i]) {
-            
-        } else if (letraDigitada != palavraEscolhida[i]) {
-            
+    if(letrasErradas.includes(letraDigitada)) {
+        alert('Letra já digitada!')
+        tentativas++
+    } else {
+        if(palavraEscolhida.includes(letraDigitada)) {
+            letrasAdv.push(letraDigitada)
+        } else {
+            letrasErradas.push(letraDigitada)
+            tentativas++
         }
     }
 
+    switch (tentativas) {
+        case 1:
+            desenhaCabeca()
+            break
+        case 2:
+            desenhaCorpo()
+            break
+        case 3:
+            desenhaBracoEsquerdo()
+            break
+        case 4:
+            desenhaBracoDireito()
+            break
+        case 5:
+            desenhaPernaDireita()
+            break
+        case 6:
+            desenhaPernaEsquerda()
+            break
+    }
+
+    atualizaJogo()
 })
+
+function atualizaJogo() {
+    mostrarLetrasErradas()
+    mostrarLetrasCertas()
+    verificaSeGanhou()
+}
+
+function mostrarLetrasErradas () {
+    letrasIncorretas.innerText = ''
+    letrasErradas.forEach(letra => {
+        letrasIncorretas.innerText += letra
+    })
+}
+
+function mostrarLetrasCertas () {
+    letrasCorretas.innerText = ''
+    palavraEscolhida.split('').forEach(letra => {
+        if(letrasAdv.includes(letra)) {
+            letrasCorretas.innerText += letra
+        } else {
+            letrasCorretas.innerText += '_'
+        }
+    })
+}
+
+function verificaSeGanhou() {
+    if (palavraEscolhida === letrasCorretas.innerText) {
+        alert('VOCÊ GANHOU! PARABÉNS')
+    }
+
+    if (tentativas == 6){
+        alert('VOCÊ PERDEU!')
+    }
+}
 
 telaInicial()
 
-const bancoPalavras = ['ALURA','HTML','JAVA','ORACLE','WINDOWS','LINUX','GATO','CACHORRO','BOLA','CARRO']
-
+let bancoPalavras = ['ALURA','HTML','JAVA','ORACLE','WINDOWS','LINUX','GATO','CACHORRO','BOLA','CARRO']
 let palavraEscolhida = ''
-let adivinhado = ''
-let letrasErradas = ''
+let letrasAdv = []
+let letrasErradas = []
+let tentativas = 0

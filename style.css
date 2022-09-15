@@ -193,8 +193,16 @@ main {
 }
 
 .canvaForca {
-    height: 100px;
+    width: 100%;
     flex: 1;
+
+    display: flex;
+}
+
+canvas {
+    width: 800px;
+    height: 400px;
+    margin: auto;
 }
 
 .campo-palavra {
@@ -205,8 +213,6 @@ main {
     flex: 0.2;
     display: flex;
 }
-
-
 
 .campo-palavra {
     background-color: white;
