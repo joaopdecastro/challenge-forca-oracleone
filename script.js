@@ -40,6 +40,21 @@ function adicionaeSalva () {
     iniciaJogo()
 }
 
+function recarregaPagina () {
+    document.location.reload(true)
+}
+
+function novoJogo () {
+    letrasCorretas.innerText = ''
+    letrasIncorretas.innerText = ''
+    letrasAdv = []
+    letrasErradas = []
+    tentativas = 0
+    limpaCanvas()
+    sorteiaPalavra()
+    desenhaForca()
+}
+
 //botões do jogo-------------------------------
 
 //botões index
@@ -60,6 +75,14 @@ botaoadicionasalva.onclick = adicionaeSalva
 
 let botaoCancelar = document.getElementById('but-cancelar')
 botaoCancelar.onclick = telaInicial
+
+//botões game ---------------------------------------
+
+let botaoNovojogo = document.getElementById('gameNovojogo')
+botaoNovojogo.onclick = novoJogo
+
+let botaoDesistir = document.getElementById('gameDesistir')
+botaoDesistir.onclick = recarregaPagina
 
 //lógica do jogo ------------------------------------
 
@@ -136,17 +159,17 @@ function mostrarLetrasCertas () {
 
 function verificaSeGanhou() {
     if (palavraEscolhida === letrasCorretas.innerText) {
-        alert('VOCÊ GANHOU! PARABÉNS')
+        textoCanva('VOCÊ GANHOU!', 'GREEN')
     }
 
     if (tentativas == 6){
-        alert('VOCÊ PERDEU!')
+        textoCanva('VOCÊ PERDEU!', 'RED')
     }
 }
 
 telaInicial()
 
-let bancoPalavras = ['ALURA','HTML','JAVA','ORACLE','WINDOWS','LINUX','GATO','CACHORRO','BOLA','CARRO']
+let bancoPalavras = ['TEXTO','MELANCIA','ANDROID','FONE','CASA','TELEFONE','GATO','CACHORRO','BOLA','CARRO']
 let palavraEscolhida = ''
 let letrasAdv = []
 let letrasErradas = []

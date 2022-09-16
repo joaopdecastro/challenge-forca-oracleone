@@ -26,6 +26,39 @@ main {
     margin: auto;
 }
 
+@keyframes mudaCor01 {
+    0% {
+        background-color: var(--cor1);
+    }
+    50% {
+        background-color: var(--cor1-1) ;
+    }
+    100% {
+        background-color: var(--cor1);
+    }
+}
+
+.adicionarPalavra {
+    border: 1.5px solid var(--cor1);
+    color: var(--cor1)
+}
+
+.adicionarPalavra:hover {
+    animation: mudaCor02 1s infinite;
+}
+
+@keyframes mudaCor02 {
+    0% {
+        background-color: var(--cor0);
+    }
+    50% {
+        background-color: var(--cor0-1) ;
+    }
+    100% {
+        background-color: var(--cor0);
+    }
+}
+
 /*CSS específico da página main*/
 
 .main-index {
@@ -62,39 +95,6 @@ main {
 
 .iniciarJogo:hover {
     animation: mudaCor01 1s infinite;
-}
-
-@keyframes mudaCor01 {
-    0% {
-        background-color: var(--cor1);
-    }
-    50% {
-        background-color: var(--cor1-1) ;
-    }
-    100% {
-        background-color: var(--cor1);
-    }
-}
-
-.adicionarPalavra {
-    border: 1.5px solid var(--cor1);
-    color: var(--cor1)
-}
-
-.adicionarPalavra:hover {
-    animation: mudaCor02 1s infinite;
-}
-
-@keyframes mudaCor02 {
-    0% {
-        background-color: var(--cor0);
-    }
-    50% {
-        background-color: var(--cor0-1) ;
-    }
-    100% {
-        background-color: var(--cor0);
-    }
 }
 
 /*fim do CSS específico da página main*/
@@ -214,6 +214,47 @@ canvas {
     display: flex;
 }
 
+.game-grid-but {
+    width: 50%;
+    height: 67px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 10px;
+}
+
+.gameNovojogo, .gameDesistir {
+    border-radius: 24px;
+    box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.103);
+}
+
+.gameNovojogo {
+    color: var(--cor0);
+    background-color: var(--cor1);
+    border: none;
+    font-size: 1em;
+    transition: 0.5s;
+}
+
+.gameDesistir {
+    font-size: 1em;
+    border: 1.5px solid var(--cor1);
+    color: var(--cor1);
+    transition: 0.5s;
+}
+
+.gameNovojogo:hover, .gameDesistir:hover {
+    scale: 1.05;
+}
+
+.gameNovojogo:hover {
+    animation: mudaCor01 1s infinite;
+}
+
+.gameDesistir:hover {
+    animation: mudaCor02 1s infinite;
+}
+
 .campo-palavra {
     background-color: white;
     width: calc(100% - 80px);
@@ -249,11 +290,5 @@ canvas {
     font-size: 30px;
 }
 
-.game-grid-but {
-    width: 50%;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    column-gap: 10px;
-}
+
 

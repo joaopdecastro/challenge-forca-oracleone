@@ -1,6 +1,10 @@
 let tela = document.querySelector('canvas')
 let pincel = tela.getContext('2d')
 
+function limpaCanvas() {
+    pincel.clearRect(0, 0, 800, 400)
+}
+
 function desenhaForca () {
 
     pincel.strokeStyle = '#061f3d'
@@ -99,4 +103,11 @@ function desenhaPernaDireita() {
     pincel.moveTo(450,250)
     pincel.lineTo(480,290)
     pincel.stroke()
+}
+
+function textoCanva (texto,cor) {
+
+    pincel.fillStyle = cor
+    pincel.font = '30px Inter'
+    pincel.fillText(texto,0,70)
 }
