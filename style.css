@@ -193,14 +193,12 @@ main {
 }
 
 .canvaForca {
-    width: 100%;
     flex: 1;
-
     display: flex;
 }
 
 canvas {
-    width: 800px;
+    max-width: 800px;
     height: 400px;
     margin: auto;
 }
@@ -216,19 +214,19 @@ canvas {
 
 .game-grid-but {
     width: 50%;
-    height: 67px;
+    height: 50px;
     margin: auto;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     column-gap: 10px;
 }
 
-.gameNovojogo, .gameDesistir {
-    border-radius: 24px;
+.gameNovojogo, .gameDesistir, .tecladoVirtual {
+    border-radius: 25px;
     box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.103);
 }
 
-.gameNovojogo {
+.gameNovojogo, .tecladoVirtual {
     color: var(--cor0);
     background-color: var(--cor1);
     border: none;
@@ -243,11 +241,11 @@ canvas {
     transition: 0.5s;
 }
 
-.gameNovojogo:hover, .gameDesistir:hover {
+.gameNovojogo:hover, .gameDesistir:hover, .tecladoVirtual:hover {
     scale: 1.05;
 }
 
-.gameNovojogo:hover {
+.gameNovojogo:hover, .tecladoVirtual:hover {
     animation: mudaCor01 1s infinite;
 }
 
@@ -257,38 +255,162 @@ canvas {
 
 .campo-palavra {
     background-color: white;
-    width: calc(100% - 80px);
-    height: 100%;
+    width: calc(50%);
     margin: auto;
     border: 1px solid var(--cor1);
-    border-radius: 30px;
+    border-radius: 20px;
 }
 
 .letrasCorretas {
     display: inline-block;
     text-align: center;
+    padding-top: 2%;
     width: 100%;
     height: 50%;
     vertical-align: middle;
     font-weight: 500;
     color: var(--cor1);
-    line-height: 2;
+    line-height: 1.5;
     letter-spacing: 20px;
-    font-size: 40px;
+    font-size: 35px;
 }
 
 .letrasIncorretas {
     display: inline-block;
     text-align: center;
     width: 100%;
+    padding-top: 2%;
     height: 50%;
-    vertical-align: middle;
+    vertical-align: baseline;
     font-weight: 500;
     color: var(--cor4);
-    line-height: 1.5;
+    line-height: 1.2;
     letter-spacing: 20px;
-    font-size: 30px;
+    font-size: 28px;
 }
 
+.teclado {
+    flex: 0.4;
+    width: 50%;
+    margin: auto;
+    padding: 20px 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+    row-gap: 5px;
+}
 
+.teclado button {
+    background-color: var(--cor1);
+    color: var(--cor3);
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: 0.3s;
+}
+
+.teclado button:hover {   
+    animation: mudaCor01 1s 1;
+}
+
+/* responsividade */
+
+@media (max-width:850px) {
+    
+    header {
+        margin: 40px;
+    }
+
+    .main-game {
+        width: calc(100% - 30px);
+        margin: auto;
+    }
+
+    .campo-palavra {
+        width: 90%;
+    }
+
+    .game-grid-but {
+        width: 90%;
+    }
+
+    canvas {
+        width: 700px;
+        height: 350px;
+    }
+
+    .teclado {
+        flex: 0.4;
+        width: 90%;
+        margin: auto;
+        padding: 20px 0px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        row-gap: 5px;
+    }
+
+    .gameNovojogo:hover, .gameDesistir:hover, .tecladoVirtual:hover {
+        scale: 1;
+    }
+    
+    .gameNovojogo:hover, .tecladoVirtual:hover {
+        animation: mudaCor01 1s 1;
+    }
+    
+    .gameDesistir:hover {
+        animation: mudaCor02 1s 1;
+    }
+}
+
+@media (max-width:450px) {
+    header {
+        margin: 20px 20px 0px 20px;
+    }
+
+    .canvaForca {
+        flex: .5;
+    }
+
+    .main-game {
+        width: calc(100% - 10px);
+        height: calc(100vh - 71px);
+        margin: auto;
+    }
+
+    canvas {
+        width: 400px;
+        height: 200px;
+    }
+
+    .teclado {
+        flex: .4;
+        width: 90%;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        column-gap: 5px;
+        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        row-gap: 5px;
+    }
+
+    .but-games {
+        flex: .3;
+    }
+
+    .game-grid-but {
+        height: 90%;
+        grid-template-columns: 1fr;
+        row-gap: 5px;
+        
+    }
+
+    .letrasCorretas {
+        font-size: 18px;
+    }
+    
+    .letrasIncorretas {
+        font-size: 14px;
+    }
+}
 

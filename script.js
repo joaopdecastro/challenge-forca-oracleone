@@ -10,8 +10,10 @@ function iniciaJogo () {
     document.getElementById('main-index').style.display = 'none'
     document.getElementById('main-addpalavras').style.display = 'none'
     document.getElementById('main-game').style.display = ''
+    document.getElementById('teclado').style.display = 'none'
     sorteiaPalavra()
     desenhaForca()
+    teclas()
 }
 
 function telaPalavra () {
@@ -81,6 +83,9 @@ botaoCancelar.onclick = telaInicial
 let botaoNovojogo = document.getElementById('gameNovojogo')
 botaoNovojogo.onclick = novoJogo
 
+let botaoTeclado = document.getElementById('tecladoVirtual')
+botaoTeclado.onclick = manipulaTeclado
+
 let botaoDesistir = document.getElementById('gameDesistir')
 botaoDesistir.onclick = recarregaPagina
 
@@ -92,46 +97,79 @@ function sorteiaPalavra() {
     
 }  //função adicionada à função de início do jogo
 
+function teclas () {
+    const alfabeto = ['A', 'B','C', 'D', 'E', 'F', 'G', 'H', 'I', 'J','K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S','T', 'U', 'V','W', 'X', 'Y', 'Z']
+    teclado.innerHTML = ''
+    alfabeto.forEach(letra => {
+        teclado.innerHTML += `<button id='tecla${letra}' class='tecla'>${letra}</button>`
+    })
+
+    mapeiaTeclas()
+        
+}
+
+function mapeiaTeclas () {
+    let x = document.getElementsByClassName('tecla')
+
+    for(let i = 0; i < x.length; i++) {
+        let ev = x[i].id
+        let texto = x[i].innerText
+        atribuirEvento(ev, texto)
+    }
+}
+
+function atribuirEvento (id,texto) {
+    document.getElementById(id).addEventListener("click", function () {
+        logicaDoJogo(texto)
+    })
+}
+
 document.addEventListener('keypress', (evento) => {
-    
-    let letraDigitada = evento.key.toUpperCase()
-    console.log(letraDigitada)
-
-    if(letrasErradas.includes(letraDigitada)) {
-        alert('Letra já digitada!')
-        tentativas++
-    } else {
-        if(palavraEscolhida.includes(letraDigitada)) {
-            letrasAdv.push(letraDigitada)
-        } else {
-            letrasErradas.push(letraDigitada)
-            tentativas++
-        }
-    }
-
-    switch (tentativas) {
-        case 1:
-            desenhaCabeca()
-            break
-        case 2:
-            desenhaCorpo()
-            break
-        case 3:
-            desenhaBracoEsquerdo()
-            break
-        case 4:
-            desenhaBracoDireito()
-            break
-        case 5:
-            desenhaPernaDireita()
-            break
-        case 6:
-            desenhaPernaEsquerda()
-            break
-    }
-
-    atualizaJogo()
+    let digitado = evento.key.toUpperCase()
+    logicaDoJogo(digitado)
 })
+
+function logicaDoJogo(evento) {
+    
+        let letraDigitada = evento
+        // .key.toUpperCase()
+        console.log(letraDigitada)
+    
+        if(letrasErradas.includes(letraDigitada)) {
+            alert('Letra já digitada!')
+            tentativas++
+        } else {
+            if(palavraEscolhida.includes(letraDigitada)) {
+                letrasAdv.push(letraDigitada)
+            } else {
+                letrasErradas.push(letraDigitada)
+                tentativas++
+            }
+        }
+    
+        switch (tentativas) {
+            case 1:
+                desenhaCabeca()
+                break
+            case 2:
+                desenhaCorpo()
+                break
+            case 3:
+                desenhaBracoEsquerdo()
+                break
+            case 4:
+                desenhaBracoDireito()
+                break
+            case 5:
+                desenhaPernaDireita()
+                break
+            case 6:
+                desenhaPernaEsquerda()
+                break
+        }
+    
+        atualizaJogo()
+}
 
 function atualizaJogo() {
     mostrarLetrasErradas()
@@ -164,7 +202,26 @@ function verificaSeGanhou() {
 
     if (tentativas == 6){
         textoCanva('VOCÊ PERDEU!', 'RED')
+        letrasCorretas.innerText = palavraEscolhida
     }
+}
+
+function manipulaTeclado() {
+    if (tec == 1) {
+        AtivaTecladoVirtual()
+        tec = 0
+    } else if (tec == 0) {
+        desativaTecladoVirtual()
+        tec = 1
+    }
+}
+
+function AtivaTecladoVirtual () {
+    document.getElementById('teclado').style.display = ''
+}
+
+function desativaTecladoVirtual (){
+    document.getElementById('teclado').style.display = 'none'
 }
 
 telaInicial()
@@ -174,3 +231,6 @@ let palavraEscolhida = ''
 let letrasAdv = []
 let letrasErradas = []
 let tentativas = 0
+let tec = 1
+
+ 
